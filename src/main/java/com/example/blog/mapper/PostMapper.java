@@ -9,11 +9,11 @@ import java.util.List;
 @Mapper
 public interface PostMapper {
     List<Post> findByPage(@Param("pageNum") Integer pageNum, @Param("getCount") Integer getCount);
-    Post findOne(@Param("id") Integer id);
+    Post findOne(@Param("idx") Integer idx);
 
     Integer save(@Param("post") Post post);
     Integer update(@Param("post") Post post);
 
-    Integer delete(@Param("id") Integer id);
+    Integer delete(@Param("idx") Integer idx);
 
 }

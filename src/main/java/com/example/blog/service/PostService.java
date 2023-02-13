@@ -18,8 +18,8 @@ public class PostService {
         return postMapper.findByPage(page,2);
     }
 
-    public Post getPostById(Integer id){
-        return postMapper.findOne(id);
+    public Post getPostById(Integer idx){
+        return postMapper.findOne(idx);
     }
 
     public boolean savePost(Post post){
@@ -32,9 +32,9 @@ public class PostService {
         return  result == 1;
     }
 
-    public boolean deletePost(Integer id){
+    public boolean deletePost(Integer idx){
 
-        Integer result = postMapper.delete(id);
+        Integer result = postMapper.delete(idx);
         return result == 1;
 
     }

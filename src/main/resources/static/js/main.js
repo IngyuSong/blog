@@ -87,7 +87,7 @@ $(function(){
         $.ajax({
             method:"DELETE",
             url:"/post",
-            data: {"id": idx}
+            data: {"idx": idx}
         })
         .done(function(response) {
             console.log("Post delete success!");
@@ -101,7 +101,7 @@ $(function(){
 
             $.ajax({
                 method:"POST",
-                url: "/reply",
+                url: "/comment",
                 data : JSON.stringify({
                     "username": username,
                     "content": content
@@ -112,6 +112,6 @@ $(function(){
                 console.log("Comment creation success!");
                 location.reload();
             });
-        });
+    });
 
 });

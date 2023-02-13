@@ -11,7 +11,7 @@
     <select id="findOne" resultType="com.example.blog.vo.Post">
         SELECT *
         FROM post
-        WHERE idx = #{id}
+        WHERE idx = #{idx}
     </select>
     <insert id="save">
         INSERT INTO post(title, content, username, createdAt)
@@ -25,6 +25,6 @@
     <delete id="delete">
         DELETE
         FROM post
-        WHERE idx = #{id}
+        WHERE idx = #{idx}
     </delete>
 </mapper>

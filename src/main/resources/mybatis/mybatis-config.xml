@@ -4,5 +4,6 @@
 <configuration>
     <mappers>
         <mapper resource="mybatis/mapper/post-mapper.xml"/>
+        <mapper resource="mybatis/mapper/comment-mapper.xml"/>
     </mappers>
 </configuration>

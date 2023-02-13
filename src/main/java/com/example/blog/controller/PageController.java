@@ -1,6 +1,8 @@
 package com.example.blog.controller;
 
+import com.example.blog.service.CommentService;
 import com.example.blog.service.PostService;
+import com.example.blog.vo.Comment;
 import com.example.blog.vo.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,11 @@ import java.util.List;
 @Controller
 public class PageController {
     private PostService postService;
+    private CommentService commentService;
 
-    public PageController(PostService postService){
+    public PageController(PostService postService, CommentService commentService){
         this.postService = postService;
+        this.commentService = commentService;
     }
 
     @GetMapping("/")
@@ -24,15 +28,15 @@ public class PageController {
         model.addAttribute("posts",postList);
         return "index";
     }
-    @RequestMapping("/post/{id}")
-    public String getBlogDetailPage(Model model, @PathVariable Integer id){
-        Post post = postService.getPostById(id);
-//        List<ReplyData> replyAll = replyService.getReplyDataByPage(id,0);
-//        Integer count = replyService.countReplies(id);
-//        model.addAttribute("reply",replyAll);
+    @RequestMapping("/post/{idx}")
+    public String getBlogDetailPage(Model model, @PathVariable Integer idx){
+        Post post = postService.getPostById(idx);
+        List<Comment> commentList = commentService.getCommentsByPage(idx,0);
+        Integer count = commentService.countComments(idx);
+        model.addAttribute("comment",commentList);
         model.addAttribute("post",post);
-//        model.addAttribute("count",count);
-        return "blog_detail";
+        model.addAttribute("count",count);
+        return "detailPost";
 
     }
 
@@ -41,9 +45,9 @@ public class PageController {
         return "newPost";
     }
 
-    @RequestMapping("/post/edit/{id}")
-    public String getPostCreatePage(Model model, @PathVariable Integer id){
-        Post post = postService.getPostById(id);
+    @RequestMapping("/post/edit/{idx}")
+    public String getPostCreatePage(Model model, @PathVariable Integer idx){
+        Post post = postService.getPostById(idx);
         model.addAttribute("post", post);
         return "editPost";
     }
