@@ -2,10 +2,18 @@ package com.example.blog.mapper;
 
 import com.example.blog.vo.Post;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
 public interface PostMapper {
-    List<Post> getAllPosts();
+    List<Post> findByPage(@Param("pageNum") Integer pageNum, @Param("getCount") Integer getCount);
+    Post findOne(@Param("id") Integer id);
+
+    Integer save(@Param("post") Post post);
+    Integer update(@Param("post") Post post);
+
+    Integer delete(@Param("id") Integer id);
+
 }

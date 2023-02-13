@@ -2,9 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.blog.mapper.PostMapper">
-    <select id="getAllBlogs" resultType="com.example.blog.vo.Post">
+    <select id="findByPage" resultType="com.example.blog.vo.Post">
         SELECT *
         FROM post
         ORDER BY idx DESC
+        LIMIT #{getCount} OFFSET #{pageNum}
     </select>
+    <select id="findOne" resultType="com.example.blog.vo.Post">
+        SELECT *
+        FROM post
+        WHERE idx = #{id}
+    </select>
+    <insert id="save">
+        INSERT INTO post(title, content, username, createdAt)
+        VALUES (#{post.title}, #{post.content}, #{post.username}, now())
+    </insert>
+    <update id="update">
+        UPDATE post
+        SET title = #{post.title}, content=#{post.content}
+        WHERE idx = #{post.idx}
+    </update>
+    <delete id="delete">
+        DELETE
+        FROM post
+        WHERE idx = #{id}
+    </delete>
 </mapper>

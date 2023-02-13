@@ -14,4 +14,10 @@ public class Post {
     String username;
     Date createdAt;
 
+    public Post(Integer idx, String title, String content, String username) {
+        this.idx = idx;
+        this.title = title;
+        this.content = content;
+        this.username = username;
+    }
 }
