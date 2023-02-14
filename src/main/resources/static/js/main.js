@@ -43,6 +43,21 @@ $(function(){
         var title = $("#post-title").val();
         var username = $("#post-username").val();
         var content = $("#post-content").val();
+        if(title == ''){
+            alert('글 제목을 입력해주세요');
+            $("#post-title").focus();
+            return false;
+        }
+        if(username == ''){
+            alert('사용자 이름을 입력해주세요');
+            $("#post-username").focus();
+            return false;
+        }
+        if(content == ''){
+            alert('글 본문을 입력해주세요');
+            $("#post-content").focus();
+            return false;
+        }
 
         $.ajax({
             method:"POST",
@@ -64,6 +79,21 @@ $(function(){
             var idx = $("#edit-post-id").val();
             var title = $("#edit-post-title").val();
             var content = $("#edit-post-content").val();
+            if(title == ''){
+                alert('글 제목을 입력해주세요');
+                $("#post-title").focus();
+                return false;
+            }
+            if(username == ''){
+                alert('사용자 이름을 입력해주세요');
+                $("#post-username").focus();
+                return false;
+            }
+            if(content == ''){
+                alert('글 본문을 입력해주세요');
+                $("#post-content").focus();
+                return false;
+            }
 
             $.ajax({
                 method:"PUT",
@@ -95,23 +125,35 @@ $(function(){
         });
     });
 
-    $("comment-save-button").click(function() {
+    $("#comment-save-button").click(function() {
             var username = $("#comment-username").val();
             var content = $("#comment-content").val();
+            var post_idx = $("#idx").val();
+
+            if(username == ''){
+                alert('사용자 이름을 입력해주세요');
+                $("#comment-username").focus();
+                return false;
+            }
+            if(content == ''){
+                alert('댓글을 입력해주세요');
+                $("#comment-content").focus();
+                return false;
+            }
 
             $.ajax({
                 method:"POST",
                 url: "/comment",
                 data : JSON.stringify({
                     "username": username,
-                    "content": content
+                    "content": content,
+                    "post_idx": post_idx
                 }),
                 contentType: "application/json"
             })
             .done(function(response) {
                 console.log("Comment creation success!");
-                location.reload();
+                window.location.href="/post/" + idx;
             });
     });
-
 });

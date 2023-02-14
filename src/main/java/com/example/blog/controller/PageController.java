@@ -33,7 +33,7 @@ public class PageController {
         Post post = postService.getPostById(idx);
         List<Comment> commentList = commentService.getCommentsByPage(idx,0);
         Integer count = commentService.countComments(idx);
-        model.addAttribute("comment",commentList);
+        model.addAttribute("comments",commentList);
         model.addAttribute("post",post);
         model.addAttribute("count",count);
         return "detailPost";
