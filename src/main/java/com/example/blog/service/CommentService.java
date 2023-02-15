@@ -2,39 +2,40 @@ package com.example.blog.service;
 
 import com.example.blog.mapper.CommentMapper;
 import com.example.blog.vo.Comment;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@Log4j2
 public class CommentService {
-    private CommentMapper commentMapper;
+    private final CommentMapper commentMapper;
 
-    public CommentService(CommentMapper commentMapper){
-        this.commentMapper = commentMapper;
+    public List<Comment> getCommentByPostIdAndPage (Integer postId, Integer page, Integer size) {
+        return commentMapper.findByPostIdAndPage(postId, size, (page-1)*size);
     }
 
-    public List<Comment> getCommentsByPage(Integer post_idx, Integer page){
-        return commentMapper.findByPage(post_idx, page,2);
+    public Integer getCommentCount(Integer postId) {
+        Integer commentCount = commentMapper.count(postId);
+        return commentCount;
     }
-
-
-    public Integer countComments(Integer post_idx){
-        return commentMapper.count(post_idx);
-    }
-
-    public boolean saveComment(Comment comment){
+    public boolean saveComment (Comment comment) {
         Integer result = commentMapper.save(comment);
-        return  result == 1;
+        return result == 1;
     }
 
-    public boolean updateComment(Comment comment){
+    public boolean updateComment (Comment comment) {
         Integer result = commentMapper.update(comment);
         return result == 1;
     }
 
-    public boolean deleteComment(Integer idx){
-        Integer result = commentMapper.delete(idx);
+    public boolean deleteComment (@RequestParam Integer commentId) {
+        Integer result = commentMapper.delete(commentId);
         return result == 1;
     }
+
 }

@@ -5,12 +5,12 @@ import lombok.Setter;
 
 @Setter
 public class CommentRequestDto {
-    Integer idx;
+    Integer id;
+    Integer postId;
     String content;
     String username;
-    Integer post_idx;
 
     public Comment getComment() {
-        return new Comment(this.idx, this.content, this.username, this.post_idx);
+        return new Comment(this.id, this.postId, this.content, this.username);
     }
 }

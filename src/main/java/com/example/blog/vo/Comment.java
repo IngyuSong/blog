@@ -1,23 +1,25 @@
 package com.example.blog.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 
+@AllArgsConstructor
 @Getter
 @Setter
 public class Comment {
-    Integer idx;
+    Integer id;
+    Integer postId;
     String content;
     String username;
     Date createdAt;
-    Integer post_idx;
 
-    public Comment(Integer idx, String content, String username, Integer post_idx) {
-        this.idx = idx;
+    public Comment(Integer id, Integer postId, String content, String username) {
+        this.id = id;
+        this.postId = postId;
         this.content = content;
         this.username = username;
-        this.post_idx = post_idx;
     }
 }

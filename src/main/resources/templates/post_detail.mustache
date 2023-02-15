@@ -18,17 +18,16 @@
         <div class="row gx-4 gx-lg-5 justify-content-center border-bottom pb-5">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <p>{{post.content}}</p>
+                <input type="hidden" id="post-id" value="{{post.id}}">
                 <div class="edit_btns">
-                    <button><a href="/post/edit/{{idx}}">수정</a></button>
-                    <button id="delete_button">삭제</button>
+                    <button><a href="/post/edit/{{post.id}}">수정</a></button>
+                    <button id="post-delete-button">삭제</button>
                 </div>
-                <input type="hidden" id="idx" value="{{idx}}">
             </div>
-
         </div>
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7 border-bottom pb-5 mt-5">
-                <div class="comment_title">댓글 {{count}}</div>
+                <div class="comment_title">댓글 {{commentCount}}</div>
                 {{#comments}}
                     <div class="comment_text">
                         <div class="etc">
@@ -42,15 +41,16 @@
                             <button id="comment-delete-button">삭제</button>
                         </div>
                         <!--수정 시-->
-                        <!--                    <textarea class="edit comment-edit" name="" id="edit2" cols="30" rows="10" placeholder="댓글을 입력해주세요"></textarea>-->
-                        <!--                    <div class="save_btns comment-edit">-->
-                        <!--                        <button class="comment-edit-cancel-button">취소</button>-->
-                        <!--                        <button class="save" id="comment-edit-button">저장하기</button>-->
-                        <!--                    </div>-->
+                        <textarea class="edit comment-edit" name="" id="comment-edit-content" cols="30" rows="10" placeholder="댓글을 입력해주세요"></textarea>
+                        <div class="save_btns comment-edit">
+                            <button class="comment-edit-cancel-button">취소</button>
+                            <button class="save" id="comment-edit-button">저장하기</button>
+                        </div>
+                        <input type="hidden" class="comment-id" value="{{id}}">
                     </div>
                 {{/comments}}
                 <div id="more-comment"></div>
-                <div class="d-flex justify-content-center mb-4"><a class="btn btn-primary text-uppercase" id="more-comment-button">MORE COMMENTS</a></div>
+                <div class="d-flex justify-content-center mb-4"><a class="btn btn-primary text-uppercase" id="more-comment-button" current-comment-page="1">MORE comments</a></div>
             </div>
             <div class="col-md-10 col-lg-8 col-xl-7 my-5">
                 <div class="comment_title">댓글 쓰기</div>

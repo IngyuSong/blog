@@ -5,26 +5,30 @@
     <select id="findByPage" resultType="com.example.blog.vo.Post">
         SELECT *
         FROM post
-        ORDER BY idx DESC
-        LIMIT #{getCount} OFFSET #{pageNum}
+        ORDER BY id DESC
+        LIMIT #{limit} OFFSET #{offset}
     </select>
+
     <select id="findOne" resultType="com.example.blog.vo.Post">
         SELECT *
         FROM post
-        WHERE idx = #{idx}
+        WHERE id=#{id};
     </select>
+
     <insert id="save">
-        INSERT INTO post(title, content, username, createdAt)
-        VALUES (#{post.title}, #{post.content}, #{post.username}, now())
+        INSERT INTO post(title, content, username)
+        VALUES (#{post.title}, #{post.content}, #{post.username});
     </insert>
+
     <update id="update">
         UPDATE post
-        SET title = #{post.title}, content=#{post.content}
-        WHERE idx = #{post.idx}
+        SET title=#{post.title}, content=#{post.content}
+        WHERE id=#{post.id};
     </update>
+
     <delete id="delete">
         DELETE
         FROM post
-        WHERE idx = #{idx}
+        where id=#{id};
     </delete>
 </mapper>

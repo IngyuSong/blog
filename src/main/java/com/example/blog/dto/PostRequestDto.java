@@ -5,14 +5,12 @@ import lombok.Setter;
 
 @Setter
 public class PostRequestDto {
-    Integer idx;
+    Integer id;
     String title;
     String content;
     String username;
 
-
-    public Post getPost(){
-        return new Post(this.idx, this.title, this.content, this.username);
+    public Post getPost() {
+        return new Post(this.id, this.title, this.content, this.username);
     }
-
 }

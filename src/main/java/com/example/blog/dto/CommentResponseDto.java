@@ -5,15 +5,13 @@ import lombok.Getter;
 
 @Getter
 public class CommentResponseDto {
-    Integer idx;
+    Integer id;
     String content;
     String username;
-    Integer post_idx;
 
-    public CommentResponseDto(Comment comment){
-        this.idx = comment.getIdx();
+    public CommentResponseDto(Comment comment) {
+        this.id = comment.getId();
         this.content = comment.getContent();
         this.username = comment.getUsername();
-        this.post_idx = comment.getPost_idx();
     }
 }

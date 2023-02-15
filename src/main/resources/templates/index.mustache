@@ -17,7 +17,7 @@
         <div class="col-md-10 col-lg-8 col-xl-7">
             {{#posts}}
                 <div class="post-preview">
-                    <a href="/post/{{idx}}">
+                    <a href="/post/{{id}}">
                         <h2 class="post-title">{{title}}</h2>
                         <h3 class="post-subtitle">{{content}}</h3>
                     </a>
@@ -29,7 +29,7 @@
             {{/posts}}
             <div id="more-posts"></div>
             <div class="d-flex justify-content-center mb-4">
-                <a class="btn btn-primary text-uppercase" id="more" last-page="0">More</a>
+                <a class="btn btn-primary text-uppercase" id="more" current-page="1">More</a>
             </div>
         </div>
     </div>
