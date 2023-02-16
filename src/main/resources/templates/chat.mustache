@@ -1,0 +1,56 @@
+{{>common/header}}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-10">
+                <div class="page-heading">
+                    <h1>Live Chat</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <div id="username-page">
+                <div class="username-page-container">
+                    <h1 class="title">사용자 이름을 입력하세요</h1>
+                    <form id="usernameForm" name="usernameForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="사용자 이름" autocomplete="off" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="accent username-submit">채팅 시작하기</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="chat-page" class="hidden">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h2>실시간 채팅</h2>
+                    </div>
+                    <div class="connecting">
+                        연결중...
+                    </div>
+                    <ul id="messageArea">
+
+                    </ul>
+                    <form id="messageForm" name="messageForm">
+                        <div class="form-group">
+                            <div class="input-group clearfix">
+                                <input type="text" id="message" placeholder="보낼 메시지를 입력하세요" autocomplete="off" class="form-control"/>
+                                <button type="submit" class="primary">보내기</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{>common/footer}}

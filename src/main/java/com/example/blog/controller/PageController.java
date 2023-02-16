@@ -48,4 +48,9 @@ public class PageController {
         model.addAttribute("post", post);
         return "post_edit";
     }
+
+    @RequestMapping(value = "/chat")
+    public String chat(){
+        return "chat";
+    }
 }

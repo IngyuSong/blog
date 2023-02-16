@@ -6,9 +6,14 @@ import com.example.blog.dto.PostRequestDto;
 import com.example.blog.dto.PostResponseDto;
 import com.example.blog.service.CommentService;
 import com.example.blog.service.PostService;
+import com.example.blog.vo.ChatMessage;
 import com.example.blog.vo.Comment;
 import com.example.blog.vo.Post;
 import lombok.RequiredArgsConstructor;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -80,5 +85,18 @@ public class APIController {
     public String deleteComment(@RequestParam Integer commentId) {
         commentService.deleteComment(commentId);
         return "Success";
+    }
+
+    @MessageMapping("/chat.sendMessage")
+    @SendTo("/topic/public")
+    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+        return chatMessage;
+    }
+
+    @MessageMapping("/chat.addUser")
+    @SendTo("/topic/public")
+    public ChatMessage addUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor){
+        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        return chatMessage;
     }
 }
