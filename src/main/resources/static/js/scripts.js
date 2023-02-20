@@ -14,7 +14,6 @@ window.addEventListener('DOMContentLoaded', () => {
             if (currentTop > 0 && mainNav.classList.contains('is-fixed')) {
                 mainNav.classList.add('is-visible');
             } else {
-                console.log(123);
                 mainNav.classList.remove('is-visible', 'is-fixed');
             }
         } else {
@@ -26,4 +25,23 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         scrollPos = currentTop;
     });
-})
+});
+
+$(document).ready(function () {
+
+   // 1. 특정 위치에서 부터 버튼 나타고, 사라지게..효과는 fade로
+    $(window).scroll(function () {
+		if ($(this).scrollTop() > 200) {
+			$('.go-top').fadeIn(200);
+		} else {
+			$('.go-top').fadeOut(200);
+		}
+	});
+
+	// 2. 버튼 클릭하면 원하는 위치로 이동
+	$('.go-top').click(function (event) {
+		event.preventDefault();
+		$('html, body').animate({ scrollTop: 0 }, 300);
+	});
+
+});
