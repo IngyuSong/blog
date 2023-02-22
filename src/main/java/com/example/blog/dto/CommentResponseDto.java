@@ -9,6 +9,7 @@ public class CommentResponseDto {
     String content;
     String username;
 
+
     public CommentResponseDto(Comment comment) {
         this.id = comment.getId();
         this.content = comment.getContent();

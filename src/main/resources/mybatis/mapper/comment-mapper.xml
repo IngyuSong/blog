@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.blog.mapper.CommentMapper">
     <select id="findByPostIdAndPage" resultType="com.example.blog.vo.Comment">
-        SELECT id, username, content, post_id
+        SELECT *
         FROM COMMENT
         WHERE post_id = #{postId}
         ORDER BY createdAt DESC
